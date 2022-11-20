@@ -1,2 +1,5 @@
 venv/
 *__pycache__
+application/static/images/*
+
+!application/static/images/gitkeep
