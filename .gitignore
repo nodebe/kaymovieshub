@@ -3,4 +3,4 @@ venv/
 application/static/images/*
 .env
 
-!application/static/images/gitkeep
+!application/static/images/.gitkeep
