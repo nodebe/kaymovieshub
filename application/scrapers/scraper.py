@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 class Scraper:
     def __init__(self, page:int) -> None:
         self.page = page
-        self.base_url = os.environ.get('WEBSITE_URL') or 'https://fzmovies.net'
+        self.base_url = os.environ.get('WEBSITE_URL')
         self.url = f"{self.base_url}/genre.php?catID=2&pg={self.page}"
         self.scraped_movie_list = []
 
