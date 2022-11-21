@@ -12,8 +12,10 @@ db = SQLAlchemy()
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
 from .scrapers.routes import scrapers
+from .twitter_bot.routes import twitter_route
 
 app.register_blueprint(scrapers, url_prefix='/v1/scrape')
+app.register_blueprint(twitter_route, url_prefix='/v1/tweet')
 
 # Configure database
 from .models import LegacyPage
