@@ -3,5 +3,3 @@ venv/
 *.DS_Store
 application/static
 .env
-
-!application/static/images/.gitkeep
