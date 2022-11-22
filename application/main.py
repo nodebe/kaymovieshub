@@ -26,3 +26,8 @@ with app.app_context():
     db.create_all()
     LegacyPage().create_legacy_page_row()
 
+@app.route('/')
+def index():
+    return """<h2>Welcome to Kay Movies Hub!</h2> 
+            <p>We are on twitter <a href='https://twitter.com/kaymovieshub'>@KayMoviesHub</a></p>
+            """
