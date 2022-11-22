@@ -13,6 +13,9 @@ def legacy_kaymovieshub_push():
 
     get_movie = Legacy.query.filter_by(pushed=False).first()
 
+    if get_movie == None:
+        return {'msg': 'Nothing to push!'}
+
     tweeter = push_movie(get_movie)
 
     get_movie.pushed = True
@@ -21,9 +24,7 @@ def legacy_kaymovieshub_push():
     return {'data': tweeter}
 
 def push_movie(movie):
-    if movie == None:
-        return {'msg': 'Nothing to push!'}
-        
+
     title = movie.title[:50].upper()
     plot = movie.plot[:150] + '...' if len(movie.plot) > 150 else movie.plot
     link = movie.link
