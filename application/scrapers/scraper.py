@@ -39,15 +39,15 @@ class Scraper:
             movie_plot = soup.find('textcolor1', attrs={'itemprop': 'description'}).text
             genres_format = soup.find_all('span', attrs={'itemprop': 'genre'})
             movies_genres = [genre.text for genre in genres_format]
-            movie_image_source = soup.find('img', attrs={'itemprop': 'image'}).get('src')
-            save_image = self.image_saver(movie_image_source)
+            movie_image_source = soup.find('img', attrs={'itemprop': 'image'}).get('src').strip(' ').replace(' ', '%20')
+            # save_image = self.image_saver(movie_image_source)
 
             # Format movie details
             movie = {
                 'title': movie_title,
                 'plot': movie_plot,
                 'genres': movies_genres,
-                'image': save_image,
+                'image': f"{self.base_url}{movie_image_source}",
                 'link': movie_url.strip(' ').replace(" ", "%20")
             }
 
@@ -56,11 +56,11 @@ class Scraper:
         except Exception as e:
             print(str(e))
 
-    def image_saver(self, image_link):
-        image_id = f"{secrets.token_hex(32)}.jpg"
-        image_content = requests.get(f"{self.base_url}/{image_link}").content
+    # def image_saver(self, image_link):
+    #     image_id = f"{secrets.token_hex(32)}.jpg"
+    #     image_content = requests.get(f"{self.base_url}/{image_link}").content
 
-        with open(f'application/static/images/{image_id}', 'wb+') as image:
-            image.write(image_content)
+    #     with open(f'application/static/images/{image_id}', 'wb+') as image:
+    #         image.write(image_content)
 
-        return image_id
+    #     return image_id

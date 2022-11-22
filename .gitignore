@@ -1,5 +1,7 @@
 venv/
 *__pycache__
 *.DS_Store
-application/static
+application/static/images/*
 .env
+
+!application/static/images/.gitkeep

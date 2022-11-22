@@ -34,13 +34,15 @@ def push_movie(movie):
         genres.append(f"#{genre.name}")
     genres = ' '.join(genres)
 
-    image_file = f"application/static/images/{movie.image}"
+    # image_file = f"application/static/images/{movie.image}"
 
     text_format = f"""{title}\n\n{plot}\n\nLink: {link}\n\n{genres}"""
 
     tweet_obj = TwitterObj()
 
-    image_id = tweet_obj.generate_image_id(image_file)
+    image = tweet_obj.image_saver(movie.image)
+
+    image_id = tweet_obj.generate_image_id(f'application/static/images/{image}')
 
     tweet = tweet_obj.post_tweet(text=text_format, media_id=[image_id])
 

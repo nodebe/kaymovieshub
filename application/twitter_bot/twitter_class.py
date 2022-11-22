@@ -1,4 +1,7 @@
 import os
+import secrets
+
+import requests
 from dotenv import load_dotenv
 import tweepy
 
@@ -13,6 +16,7 @@ consumer_secret = os.environ.get('TWITTER_API_KEY_SECRET')
 class TwitterObj:
 
     def __init__(self):
+        self.base_url = os.environ.get('WEBSITE_URL')
         self.authenthicate = tweepy.OAuth1UserHandler(
             consumer_key, consumer_secret, access_token, access_token_secret
         )
@@ -33,5 +37,15 @@ class TwitterObj:
         image_id = auth.simple_upload(image_file_name)
 
         return image_id.media_id_string
+    
+    def image_saver(self, image_link):
+        print('downloading image')
+        image_id = f"{secrets.token_hex(32)}.jpg"
+        image_content = requests.get(f"{image_link}").content
+
+        with open(f'application/static/images/{image_id}', 'wb+') as image:
+            image.write(image_content)
+        print('image saved!')
+        return image_id
 
         

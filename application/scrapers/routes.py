@@ -15,7 +15,6 @@ def scrape_legacy_movies():
     scraper = Scraper(get_page.page)
     scraper.start_scraper()
 
-
     get_page.page -= 1
 
     movies = scraper.scraped_movie_list
