@@ -15,6 +15,8 @@ def legacy_kaymovieshub_push():
 
     if get_movie == None:
         return {'msg': 'Nothing to push!'}
+    
+    print('here')
 
     tweeter = push_movie(get_movie)
 
