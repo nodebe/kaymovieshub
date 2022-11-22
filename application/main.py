@@ -26,8 +26,17 @@ with app.app_context():
     db.create_all()
     LegacyPage().create_legacy_page_row()
 
+# Create necessary folder
+def create_folder():
+    try:
+        os.makedirs('application/static/img')
+    except Exception as e:
+        print('Static folder Created!')
+
 @app.route('/')
 def index():
     return """<h2>Welcome to Kay Movies Hub!</h2> 
             <p>We are on twitter <a href='https://twitter.com/kaymovieshub'>@KayMoviesHub</a></p>
             """
+
+create_folder()
