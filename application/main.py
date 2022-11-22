@@ -29,7 +29,7 @@ with app.app_context():
 # Create necessary folder
 def create_folder():
     try:
-        os.makedirs('application/static/img')
+        os.makedirs('application/static/images')
     except Exception as e:
         print('Static folder Created!')
 
