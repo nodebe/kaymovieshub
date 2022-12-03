@@ -2,6 +2,7 @@ import os
 import secrets
 
 import requests
+from application.twitter_bot.image_processor import improve_image
 from dotenv import load_dotenv
 import tweepy
 
@@ -45,6 +46,10 @@ class TwitterObj:
 
         with open(f'application/static/images/{image_id}', 'wb+') as image:
             image.write(image_content)
+        
+        # Make Higher resolution image
+        improve_image(image_id)
+
         print('image saved!')
         return image_id
 
